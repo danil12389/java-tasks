@@ -4,6 +4,7 @@ import org.example.Entity;
 import org.example.ToUpperCaseAnnProcessor;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.List;
 
@@ -30,10 +31,10 @@ public class TestClass {
 
     @Test
     public void checkPublicAnnotationField() throws IllegalAccessException {
-        assertEquals("PUBLIC_ANNOTATED_FIELD", result.get(0), "Приватное аннотированное поле");
+        assertEquals("PUBLIC_ANNOTATED_FIELD", entity.publicAnnotatedField, "Публичное аннотированное поле");
     }
     @Test
     public void checkPrivateAnnotationField() throws IllegalAccessException {
-        assertEquals("PRIVATE_ANNOTATED_FIELD", result.get(1), "Приватное аннотированное поле");
+        assertEquals("PRIVATE_ANNOTATED_FIELD", entity.getPrivateAnnotatedField(), "Приватное аннотированное поле");
     }
 }

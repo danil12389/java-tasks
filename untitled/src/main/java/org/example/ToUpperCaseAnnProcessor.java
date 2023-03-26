@@ -13,6 +13,7 @@ public class ToUpperCaseAnnProcessor{
             //Так лучше не делать, но вдруг нам будут нужны даже приватные поля через рефлексию
             m.setAccessible(true);
             if (m.isAnnotationPresent(ToUpperCaseAnn.class)) {
+                m.set(instance, m.get(instance).toString().toUpperCase());
                 result.add(m.get(instance).toString().toUpperCase());
             }
         }

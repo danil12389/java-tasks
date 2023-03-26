@@ -11,4 +11,8 @@ public class Entity {
 
     @ToUpperCaseAnn()
     private String privateAnnotatedField = "private_Annotated_Field";
+
+    public String getPrivateAnnotatedField() {
+        return privateAnnotatedField;
+    }
 }
