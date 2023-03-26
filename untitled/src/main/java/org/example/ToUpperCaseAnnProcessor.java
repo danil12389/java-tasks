@@ -1,29 +1,21 @@
 package org.example;
 
-import com.google.auto.service.AutoService;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.annotation.processing.*;
-import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
-import javax.lang.model.element.TypeElement;
-import java.util.Set;
+public class ToUpperCaseAnnProcessor{
 
-@SupportedAnnotationTypes("org.example.ToUpperCaseAnn")
-@SupportedSourceVersion(SourceVersion.RELEASE_11)
-@AutoService(Processor.class)
-public class ToUpperCaseAnnProcessor extends AbstractProcessor{
-
-    @Override
-    public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
-        System.out.println("test");
-        for (TypeElement annotation : annotations) {
-            Set<? extends Element> annotatedElements = roundEnv.getElementsAnnotatedWith(annotation);
-            for (Element annotatedElement : annotatedElements) {
-                System.out.println(annotatedElement);
-                annotatedElement.toString().toUpperCase();
+    public List<String> process(Object instance) throws IllegalAccessException {
+        Field[] clazz = instance.getClass().getDeclaredFields();
+        List<String> result = new ArrayList<>();
+        for (Field m : clazz) {
+            //Так лучше не делать, но вдруг нам будут нужны даже приватные поля через рефлексию
+            m.setAccessible(true);
+            if (m.isAnnotationPresent(ToUpperCaseAnn.class)) {
+                result.add(m.get(instance).toString().toUpperCase());
             }
         }
-
-        return false;
+        return result;
     }
 }

@@ -2,10 +2,8 @@ package org.example;
 
 import java.lang.annotation.*;
 
-@Documented
 @Target(ElementType.FIELD)
-@Inherited
-@Retention(RetentionPolicy.SOURCE)
+@Retention(RetentionPolicy.RUNTIME)
 public @interface ToUpperCaseAnn {
     String info() default "No String value";
 }

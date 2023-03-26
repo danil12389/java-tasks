@@ -1,4 +1,4 @@
 org/example/Main.class
+org/example/Entity.class
 org/example/ToUpperCaseAnn.class
-org/example/MSD.class
 org/example/ToUpperCaseAnnProcessor.class
